@@ -1,35 +1,20 @@
 package de.hawhamburg.ton.P01;
 
-public class Complex implements {
+public class Complex {
 
-	private int erste;
-	private int zweite;
+	private double a;
+	private double b;
+	private double i;
 	
 	public Complex() {
 		// TODO Auto-generated constructor stub
 	}
-
 	
-	
-	public int getErste() {
-		return erste;
-	}
-
-
-
-	public int getZweite() {
-		return zweite;
-	}
-
-
-
-	public static void main(String erste, String zweite) {
-		
+	public double add(double other){
+		return this.a + other; 
 	}
 	
 	public String toString(){
-		
-		return("("+erste+" , "+zweite+")");
+		return(""+a + b * i); 
 	}
-	
 }
