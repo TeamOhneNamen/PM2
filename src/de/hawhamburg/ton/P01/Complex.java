@@ -7,7 +7,7 @@ public class Complex {
 	private double i;
 	
 	public Complex() {
-		// TODO Auto-generated constructor stub
+		//System.out.println("a");
 	}
 	
 	public double add(double other){
