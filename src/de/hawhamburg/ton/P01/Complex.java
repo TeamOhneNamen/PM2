@@ -24,6 +24,12 @@ public class Complex extends Number{
 			//real_number = real_number + other.getReal_number;
 			//imaginary_number = imaginary_number + other.imaginary_number;
 			}
+		if (other instanceof double){
+			real_number = real_number + other;
+			}
+		if (other instanceof int){
+			real_number = real_number + (double) other;
+			}
 	}
 	
 	public void multiply(double other){
