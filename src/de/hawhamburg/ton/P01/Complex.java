@@ -4,11 +4,17 @@ public class Complex extends Number{
 
 	private double real_number; // a
 	private double imaginary_number; //b
-	private String imaginary_unit = "i"; // i
+	private double imaginary_unit = Math.sqrt(-1.0); // i
 	
-	public Complex() { //double[] args
+	public Complex(double re, double im) { //double[] args
+		real_number = re;
+		imaginary_unit = im;
+		
 		//real_number = args[0];
 		//imaginary_number = args[1];
+	}
+	
+	public static void main(String[] args) {
 	}
 	
 	public double getReal_number(){
@@ -16,7 +22,7 @@ public class Complex extends Number{
 	}
 	
 	public double getImaginary_number(){
-		return real_number;
+		return imaginary_unit;
 	}
 	
 	public void add(Number other){
@@ -55,8 +61,8 @@ public class Complex extends Number{
 		return Math.sqrt(Math.pow(real_number, 2.0) + Math.pow(imaginary_number, 2.0));
 	}
 	
-	public String konjugation(){
-		return(imaginary_unit = "-i");
+	public double konjugation(){
+		return( - imaginary_unit);
 	}
 
 	@Override
