@@ -1,82 +1,130 @@
 package de.hawhamburg.ton.P01;
 
-public final class Complex extends Number{
+/**
+ * An immutable class for complex numbers, modeled after the corresponding
+ * Ruby class Complex (Complex Ruby Stdlib 1.8.7).
+ * 
+ * @author Ferdinand Trendelenburg.
+ * @author Thorben Schomacker.
+ *
+ */
+
+public final class Complex extends Number {
 
 	private double real_number; // a
-	private double imaginary_number; //b
-	public final Complex imaginary_unit = new Complex(0,1); // i
-	
+	private double imaginary_number; // b
+	//public static Complex imaginary_unit; // i
+	private double[] polar_coordinates;
+
 	public Complex(double re, double im) {
 		real_number = re;
 		imaginary_number = im;
 	}
 	
+	//public final static void i_erzeugen(){
+	//	imaginary_unit = new Complex(0, 1);
+	//}
+
 	public static void main(String[] args) {
 	}
-	
-	public double getReal_number(){
+
+	public double getReal_number() {
 		return real_number;
 	}
-	
-	public double getImaginary_number(){
+
+	public double getImaginary_number() {
 		return imaginary_number;
 	}
-	
-	public void add(Complex other){
-		real_number = real_number + other.getReal_number();
-		imaginary_number = imaginary_number + other.getImaginary_number();
+
+	public Complex add(Complex other) {
+		return new Complex(real_number + other.getReal_number(), imaginary_number + other.getImaginary_number());
 	}
-	
-	public void add(double other){
-		real_number = real_number + other;
-		imaginary_number = imaginary_number + other;
+
+	public Complex add(double other) {
+		return new Complex(real_number + other, imaginary_number);
 	}
-	
-	public void add(int other){
-		real_number = real_number + (double) other;
-		imaginary_number = imaginary_number + (double) other;
+
+	public Complex add(int other) {
+		return new Complex(real_number + (double) other, imaginary_number);
 	}
-	
-	public void multiply(double other){
-		real_number = real_number * other;
-		imaginary_number = imaginary_number * other;
+
+	public Complex mul(Complex other) {
+		return new Complex(real_number * other.getReal_number() - imaginary_number * other.getImaginary_number(),
+				real_number * other.getImaginary_number() + imaginary_number * other.getReal_number());
+
 	}
-	
-	public void divide(double other){
-		real_number = real_number / other;
-		imaginary_number = imaginary_number / other;
+
+	public Complex mul(double other) {
+		return new Complex(real_number * other, real_number * other);
 	}
-	
-	public void pow(double other){
-		real_number = Math.pow(real_number, other);
-		imaginary_number = Math.pow(imaginary_number, other);
+
+	public Complex mul(int other) {
+		return new Complex(real_number * (double) other, real_number * (double) other);
 	}
-	
-	//Absolute value (aka modulus): distance from the zero point on the complex plane. 
-	public double abs(){
-	  return Math.hypot(real_number, imaginary_number);
+
+	public Complex div(Complex other) {
+		return this.mul(other.conjugate().div(other.abs()));
 	}
-	
-	public double arg(){
-	  return Math.atan2(imaginary_number, real_number);
+
+	public Complex div(double other) {
+		return new Complex(real_number / other, imaginary_number / other);
 	}
-	
-	public String toString(){
-		return(""+ real_number + " + " + imaginary_number + " * " + imaginary_unit); 
+
+	public Complex div(int other) {
+		return new Complex(real_number / (double) other, imaginary_number / (double) other);
 	}
-	
-	//Creates a Complex number in terms of r (radius) and theta (angle).
-	public Complex polar(double r, double theta){
-		return new Complex(r*Math.cos(theta), r*Math.sin(theta));
+
+	public Complex pow(Complex other) {
+		polar();
+		double r = polar_coordinates[0];
+		double theta = polar_coordinates[1];
+
+		double ore = other.getReal_number();
+		double oim = other.getImaginary_number();
+
+		double nr = Math.exp(ore * Math.log(r) - oim * theta);
+		double ntheta = theta * ore + oim * Math.log(r);
+
+		return polar(nr, ntheta);
 	}
-	
-	public double polar(){
-	  return real_number; 
-	  return imaginary_number;
+
+	public Complex pow(double other) {
+		polar();
+		double r = polar_coordinates[0];
+		double theta = polar_coordinates[1];
+
+		return polar(Math.pow(r, other), theta * other);
 	}
-	
-	public Complex conjugate(){
-	  return new Complex(real_number, - imaginary_number);
+
+	// Absolute value (aka modulus): distance from the zero point on the complex
+	// plane.
+	public double abs() {
+		return Math.hypot(real_number, imaginary_number);
+	}
+
+	public double abs2() {
+		return real_number * real_number + imaginary_number * imaginary_number;
+	}
+
+	public double arg() {
+		return Math.atan2(imaginary_number, real_number);
+	}
+
+	// Creates a Complex number in terms of r (radius) and theta (angle).
+	public Complex polar(double r, double theta) {
+		return new Complex(r * Math.cos(theta), r * Math.sin(theta));
+	}
+
+	// returns an array with the polar coordinates by using the methods abs()
+	// and arg().
+	public double[] polar() {
+		polar_coordinates[0] = abs();
+		polar_coordinates[1] = arg();
+		return polar_coordinates;
+	}
+
+	public Complex conjugate() {
+		return new Complex(real_number, -imaginary_number);
 	}
 
 	@Override
@@ -101,5 +149,19 @@ public final class Complex extends Number{
 	public long longValue() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public String toString() {
+		if (real_number != 0) {
+
+			if (imaginary_number >= 0) {
+				return ("" + real_number + "+(" + imaginary_number + ")i");
+			} else {
+				return ("" + real_number + "-(" + (-imaginary_number) + ")i");
+			}
+
+		} else {
+			return ("" + imaginary_number + "i");
+		}
 	}
 }
