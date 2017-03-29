@@ -1,7 +1,5 @@
 package de.hawhamburg.ton.P02;
 
-import com.sun.org.apache.regexp.internal.recompile;
-
 public class Operatoren {
 
 	public static double pi = Math.PI;
@@ -18,7 +16,6 @@ public class Operatoren {
 		
 		
 		String ergebniss = "";
-		double temp_zahl = eingang;
 
 		int vorKomma = (int) eingang;
 		double nachKomma = eingang - vorKomma;
