@@ -8,36 +8,44 @@ public class Operatoren {
 		System.out.println(decFracToBin(Math.E));
 		System.out.println(decFracToBin(2.0));
 		System.out.println(decFracToBin(2.1));
-		System.out.println(decFracToOct(123.0));
+		System.out.println(decFracToBase(123.0, 2, 45));
+		System.out.println(decFracToBase(123.45, 8, 45));
 
 	}
 	
-	public static String decFracToOct(double decimalFraction){
-		//defines how many decimal places you want to convert. A recommandable value is 45.
-		int accuracy = 45;
+	//accuracy - defines how many decimal places you want to convert. A recommandable value is 45.
+	public static String decFracToBase(double decimalFraction, int base, int accuracy){ 
 		int vorKomma = (int) decimalFraction;
 		double nachKomma = decimalFraction - vorKomma;
 		if (nachKomma == 0.0){
-			return decIntToOct(vorKomma);
+			return decIntToOct(vorKomma, base);
 		} else {
-			return (decIntToBinInt(vorKomma) + "." + decPlaceToBin(nachKomma, accuracy) 
+			return (decIntToOct(vorKomma, base) + "." + decPlaceToBase(nachKomma, base, accuracy) 
 			+ "   - Präzise bis zur " + accuracy + ". Stelle nach dem Komma");
 		}
 	}
 	
-	public static String decPlaceToOct(int decPlace){
-		decPlace 
-		int accuracy = 45;
-		int vorKomma = (int) decPlace;
-		double nachKomma = decPlace - vorKomma;
+	public static String decPlaceToBase(double decPlace, int base, int accuracy){
+		int count = 0;
+		int vorKomma;
+		String octDecPlace = "";
+		
+		while (count != accuracy && decPlace > 0) {
+			vorKomma = (int) (decPlace * (double) base);
+			octDecPlace = octDecPlace + vorKomma;
+			decPlace = decPlace * (double) base - vorKomma;
+			
+			count++;
+		}
+		return octDecPlace;
 		
 	}
 	
-	public static String decIntToOct(int decimalInteger){
+	public static String decIntToOct(int decimalInteger, int base){
 		String octInt = ""; 
 		while (decimalInteger > 0){
-			octInt = (decimalInteger % 8) + octInt;
-			decimalInteger = decimalInteger / 8;
+			octInt = (decimalInteger % base) + octInt;
+			decimalInteger = decimalInteger / base;
 		}
 		return octInt;
 	}
