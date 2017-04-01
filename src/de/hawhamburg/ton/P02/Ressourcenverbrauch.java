@@ -7,11 +7,11 @@ package de.hawhamburg.ton.P02;
 public class Ressourcenverbrauch {
 
 	public static void main(String[] args) {
-		leftShift();
+		compare();
 
 	}
 	
-	public static void leftShift(){
+	public static void compare(){
 		//nanoTime(); like currentTimeMillis() but in nanoseconds
 		//currentTimeMillis();
 		//System.currentTimeMillis()
