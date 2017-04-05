@@ -32,6 +32,7 @@ public final class Complex {
 	}
 
 	public static void main(String[] args) { // raus
+		System.out.println(Complex.ofCart(0.0, 1.0).polar());
 		System.out.println(Complex.ofCart(0.0, 1.0).hashCode());
 	}
 
@@ -52,21 +53,20 @@ public final class Complex {
 	}
 
 	public Complex add(int other) {
-		return new Complex(realNumber + (double) other, imaginaryNumber);
+		return new Complex(realNumber + ((Integer)other).doubleValue(), imaginaryNumber);
 	}
 
 	public Complex mul(Complex other) {
 		return new Complex(realNumber * other.getRealNumber() - imaginaryNumber * other.getImaginaryNumber(),
 				realNumber * other.getImaginaryNumber() + imaginaryNumber * other.getRealNumber());
-
 	}
 
 	public Complex mul(double other) {
 		return new Complex(realNumber * other, realNumber * other);
 	}
-
+	
 	public Complex mul(int other) {
-		return new Complex(realNumber * (double) other, realNumber * (double) other);
+		return new Complex(realNumber * ((Integer)other).doubleValue(), realNumber * ((Integer)other).doubleValue());
 	}
 
 	public Complex div(Complex other) {
@@ -78,7 +78,7 @@ public final class Complex {
 	}
 
 	public Complex div(int other) {
-		return new Complex(realNumber / (double) other, imaginaryNumber / (double) other);
+		return new Complex(realNumber / ((Integer)other).doubleValue(), imaginaryNumber / ((Integer)other).doubleValue());
 	}
 
 	public Complex pow(Complex other) { // in die Utility
@@ -103,6 +103,19 @@ public final class Complex {
 		return ofPolar(Math.pow(r, other), theta * other);
 	}
 
+	public Complex mod(Complex other){
+		return new Complex(realNumber % other.getRealNumber(), imaginaryNumber % other.getImaginaryNumber());
+	}
+	
+	public Complex mod(double other){
+		return new Complex(realNumber % other, imaginaryNumber % other);
+	}
+	
+	//remove casts!!
+	public Complex mod(int other){
+		return new Complex(realNumber % (double) other, imaginaryNumber % (double) other);
+	}
+	
 	// Absolute value (aka modulus): distance from the zero point on the complex
 	// plane.
 	// hypot returns sqrt(x**2 + y**2), the hypotenuse of a right-angled
@@ -133,13 +146,16 @@ public final class Complex {
 	}
 
 	public boolean equals(Object other) {
-		if (other.getClass() != this.getClass()) {
+		  if (other.getClass() == Number.class) {
+			return (imaginaryNumber == 0 && realNumber == (double)other);
+		}else if (other.getClass() == Complex.class){
+			return (realNumber == ((Complex)other).getRealNumber() && imaginaryNumber == ((Complex)other).getImaginaryNumber());
+		}else {
 			return false;
-		} else {
-			return (this.abs() == (((Complex) other).abs()));
 		}
 	}
-
+	
+	//does this method works without boxing?
 	public int hashCode() {
 		Double re = (Double) realNumber;
 		Double im = (Double) imaginaryNumber;
