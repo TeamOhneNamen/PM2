@@ -1,31 +1,38 @@
 package de.hawhamburg.ton.P01;
 
 /**
- * An immutable class for complex numbers, modeled after the corresponding
- * Ruby class Complex (Complex Ruby Stdlib 1.8.7).
+ * An immutable class for complex numbers, modeled after the corresponding Ruby
+ * class Complex (Complex Ruby Stdlib 1.8.7).
  * 
  * @author Ferdinand Trendelenburg.
  * @author Thorben Schomacker.
  *
+ *
  */
 
-public final class Complex extends Number {
+public final class Complex {
 
+	public static final Complex I = new Complex(0, 1);
 	private double realNumber; // a
 	private double imaginaryNumber; // b
-	//public static Complex imaginary_unit; // i
-	private double[] polarCoordinates;
 
-	public Complex(double re, double im) {
+	public static Complex ofCart(double re, double im) {
+		return new Complex(re, im);
+	}
+
+	// Creates a Complex number in terms of r (radius) and theta (angle).
+	// raus
+	public static Complex ofPolar(double r, double theta) {
+		return new Complex(r * Math.cos(theta), r * Math.sin(theta));
+	}
+
+	private Complex(double re, double im) {
 		realNumber = re;
 		imaginaryNumber = im;
 	}
-	
-	//public final static void i_erzeugen(){
-	//	imaginary_unit = new Complex(0, 1);
-	//}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { // raus
+		System.out.println(Complex.ofCart(0.0, 1.0).hashCode());
 	}
 
 	public double getRealNumber() {
@@ -74,10 +81,10 @@ public final class Complex extends Number {
 		return new Complex(realNumber / (double) other, imaginaryNumber / (double) other);
 	}
 
-	public Complex pow(Complex other) {
-		polar();
-		double r = polarCoordinates[0];
-		double theta = polarCoordinates[1];
+	public Complex pow(Complex other) { // in die Utility
+		double[] temp = polar();
+		double r = temp[0];
+		double theta = temp[1];
 
 		double ore = other.getRealNumber();
 		double oim = other.getImaginaryNumber();
@@ -85,19 +92,21 @@ public final class Complex extends Number {
 		double nr = Math.exp(ore * Math.log(r) - oim * theta);
 		double ntheta = theta * ore + oim * Math.log(r);
 
-		return polar(nr, ntheta);
+		return ofPolar(nr, ntheta);
 	}
 
 	public Complex pow(double other) {
-		polar();
-		double r = polarCoordinates[0];
-		double theta = polarCoordinates[1];
+		double[] temp = polar();
+		double r = temp[0];
+		double theta = temp[1];
 
-		return polar(Math.pow(r, other), theta * other);
+		return ofPolar(Math.pow(r, other), theta * other);
 	}
 
 	// Absolute value (aka modulus): distance from the zero point on the complex
 	// plane.
+	// hypot returns sqrt(x**2 + y**2), the hypotenuse of a right-angled
+	// triangle with sides x and y.
 	public double abs() {
 		return Math.hypot(realNumber, imaginaryNumber);
 	}
@@ -110,45 +119,31 @@ public final class Complex extends Number {
 		return Math.atan2(imaginaryNumber, realNumber);
 	}
 
-	// Creates a Complex number in terms of r (radius) and theta (angle).
-	public Complex polar(double r, double theta) {
-		return new Complex(r * Math.cos(theta), r * Math.sin(theta));
-	}
-
 	// returns an array with the polar coordinates by using the methods abs()
 	// and arg().
 	public double[] polar() {
-		polarCoordinates[0] = abs();
-		polarCoordinates[1] = arg();
-		return polarCoordinates;
+		double[] result = new double[2];
+		result[0] = abs();
+		result[1] = arg();
+		return result;
 	}
 
 	public Complex conjugate() {
 		return new Complex(realNumber, -imaginaryNumber);
 	}
 
-	@Override
-	public double doubleValue() {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean equals(Object other) {
+		if (other.getClass() != this.getClass()) {
+			return false;
+		} else {
+			return (this.abs() == (((Complex) other).abs()));
+		}
 	}
 
-	@Override
-	public float floatValue() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int intValue() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public long longValue() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int hashCode() {
+		Double re = (Double) realNumber;
+		Double im = (Double) imaginaryNumber;
+		return Math.abs((re.hashCode() - im.hashCode())); 
 	}
 
 	public String toString() {

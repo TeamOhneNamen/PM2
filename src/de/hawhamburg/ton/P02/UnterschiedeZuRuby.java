@@ -1,9 +1,7 @@
 /* author: Thorben Schomacker
  * author: Ferdinand Trendelenburg
  * 
- * Diese Klasse ist eine KLasse, die zusammengewürfelt ist mit den Aufgaben der Aufgabe 02
-
-
+ * Diese Klasse ist eine KLasse, die zusammengewÃ¼rfelt ist mit den Aufgaben der Aufgabe 02
 **/
 package de.hawhamburg.ton.P02;
 
@@ -26,33 +24,36 @@ public class UnterschiedeZuRuby {
 	public static void main(String[] args) {
 		
 		System.out.println("Aufgabe 1.1:");
-		System.out.println("Ist "+ a1wert1+ " ungerade? - " + isOdd(a1wert1));
+		System.out.println("Ist "+ a1wert1+ " ungerade? - " + isOdd(-5));
 		testeEqualsString();
-		System.out.println("Erklärung: Diese Methode funktioniert nur für werte, die im Integer-Bereich liegen");
+		System.out.println("ErklÃ¤rung: Diese Methode funktioniert nur fÃ¼r werte, die im Integer-Bereich liegen");
 		System.out.println("");
 		System.out.println("Aufgabe 1.2:");
-		//System.out.println("Test mit Strings gleicher Worte: "+testeEqualsString());
 		System.out.println("Test mit Objekten: "+testeEqualsObjekt());
-		System.out.println("Der Test mit Primitiven Datentypen wie zum besipel Integer ist nicht mögleich.");
-		System.out.println("Erklärung: Es handelt sich om die methode, die in Ruby __ genannt wird.");
+		System.out.println("Der Test mit Primitiven Datentypen wie zum besipel Integer ist nicht mÃ¶gleich.");
+		System.out.println("ErklÃ¤rung: Es handelt sich um die methode, die in Ruby == genannt wird.");
 		
 		
 		
 	}
 	
 	
-	//Diese Methode funktioniert nur für werte, die im Integer-Bereich liegen und positiv sind.
+	//Diese Methode funktioniert nur fÃ¼r werte, die im Integer-Bereich liegen und positiv sind.
 	private static boolean isOdd(int i) {
 		
-		return i % 2 == 1;
+		return Math.abs(i % 2) == 1;
 		
 	}
 	
 	private static void testeEqualsString() {
+		//reflexive
+		System.out.println("wort1 ~ wort1 - " + wort1.equals(wort1));
 		
-		System.out.println("wort1, wort2 - " + wort1.equals(wort2));
-		System.out.println("wort2, wort1 - " + wort2.equals(wort1));
-		System.out.println("wort3 = wort2, wort4 = wort2 => wort3 = wort4? - " + wort3.equals(wort4)); //fehlt noch was
+		//symetric
+		System.out.println("wort1 ~ wort2 => wort2 ~ wort1 " + (wort1.equals(wort2) && wort2.equals(wort1)));
+		
+		//transitive
+		System.out.println("wort3 ~ wort2, wort4 ~ wort2 => wort3 ~ wort4? - " + (wort3.equals(wort2) && wort4.equals(wort2) && wort3.equals(wort4))); //fehlt noch was
 		
 	}
 	

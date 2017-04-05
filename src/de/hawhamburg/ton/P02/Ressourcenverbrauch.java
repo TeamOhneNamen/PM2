@@ -12,10 +12,6 @@ public class Ressourcenverbrauch {
 	}
 	
 	public static void compare(){
-		//nanoTime(); like currentTimeMillis() but in nanoseconds
-		//currentTimeMillis();
-		//System.currentTimeMillis()
-		//String strLong = Long.toString(longNumber);
 		int places = 5;
 		
 		final int oneDec = 1;
@@ -36,69 +32,69 @@ public class Ressourcenverbrauch {
 		beforeDec = System.currentTimeMillis();
 		resultDec = oneDec + twoDec;
 		afterDec = System.currentTimeMillis();
-		System.out.println(Long.toString(afterDec - beforeDec));
+		System.out.println("Addition compared in milliseconds(decimal): " + "\t\t" + Long.toString((afterDec - beforeDec)));
 		
 		beforeBin = System.currentTimeMillis();
 		resultBin = oneBin + twoBin;
 		afterBin = System.currentTimeMillis();
-		System.out.println(Long.toString(afterBin - beforeBin));
+		System.out.println("Addition compared in milliseconds(binary): " + "\t\t" + Long.toString(afterBin - beforeBin));
 		
 		// Addition compared in nanoseconds.
 		beforeDec = System.nanoTime();
 		resultDec = oneDec + twoDec;
 		afterDec = System.nanoTime();
-		System.out.println(Long.toString(afterDec - beforeDec));
+		System.out.println("Addition compared in nanoseconds(decimal): " + "\t\t" + Long.toString(afterDec - beforeDec));
 		
 		beforeBin = System.nanoTime();
 		resultBin = oneBin + twoBin;
 		afterBin = System.nanoTime();
-		System.out.println(Long.toString(afterBin - beforeBin));
+		System.out.println("Addition compared in nanoseconds(binary): " + "\t\t" + Long.toString(afterBin - beforeBin));
 		
 		// Multiplication compared in milliseconds.
 		beforeDec = System.currentTimeMillis();
 		resultDec = oneDec * twoDec;
 		afterDec = System.currentTimeMillis();
-		System.out.println(Long.toString(afterDec - beforeDec));
+		System.out.println("Multiplication compared in milliseconds(decimal): " + "\t" + Long.toString(afterDec - beforeDec));
 		
 		beforeBin = System.currentTimeMillis();
 		resultBin = oneBin * twoBin;
 		afterBin = System.currentTimeMillis();
-		System.out.println(Long.toString(afterBin - beforeBin));
+		System.out.println("Multiplication compared in milliseconds(binary): " + "\t" + Long.toString(afterBin - beforeBin));
 		
 		// Multiplication compared in nanoseconds.
 		beforeDec = System.nanoTime();
 		resultDec = oneDec * twoDec;
 		afterDec = System.nanoTime();
-		System.out.println(Long.toString(afterDec - beforeDec));
+		System.out.println("Multiplication compared in nanoseconds(decimal): " + "\t" + Long.toString(afterDec - beforeDec));
 		
 		beforeBin = System.nanoTime();
 		resultBin = oneBin * twoBin;
 		afterBin = System.nanoTime();
-		System.out.println(Long.toString(afterBin - beforeBin));
+		System.out.println("Multiplication compared in nanoseconds(binary): " + "\t" + Long.toString(afterBin - beforeBin));
 		
 		// Left shift / right shift  in milliseconds.
 		
 		beforeBin = System.currentTimeMillis();
 		resultBin = oneBin << 5;
 		afterBin = System.currentTimeMillis();
-		System.out.println(Long.toString(afterBin - beforeBin));
+		System.out.println("Left shift / right shift  in milliseconds(decimal): " + "\t" + Long.toString(afterBin - beforeBin));
 		
 		beforeBin = System.currentTimeMillis();
 		resultBin = oneBin >> 5;
 		afterBin = System.currentTimeMillis();
-		System.out.println(Long.toString(afterBin - beforeBin));
+		System.out.println("Left shift / right shift  in milliseconds(binary): " + "\t" + Long.toString(afterBin - beforeBin));
 		
 		// Left shift / right shift in nanoseconds.
 		
 		beforeBin = System.nanoTime();
 		resultBin = oneBin << 5;
 		afterBin = System.nanoTime();
-		System.out.println(Long.toString(afterBin - beforeBin));
+		System.out.println("Left shift / right shift  in nanoseconds(decimal): " + "\t" + Long.toString(afterBin - beforeBin));
 		
 		beforeBin = System.nanoTime();
 		resultBin = oneBin >> 5;
 		afterBin = System.nanoTime();
-		System.out.println(Long.toString(afterBin - beforeBin));
+		System.out.println("Left shift / right shift  in nanoseconds(binary): " + "\t" + Long.toString(afterBin - beforeBin));
 		
 		//System.out.println(Long.toString(System.currentTimeMillis()));
 		//System.out.println(Integer.toBinaryString(2)); 

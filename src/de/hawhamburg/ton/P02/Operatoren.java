@@ -8,6 +8,8 @@ package de.hawhamburg.ton.P02;
 public class Operatoren {
 
 	public static void main(String[] args) {
+		System.out.println(decFracToBase(Math.PI, 2, 45));
+		System.out.println(decFracToBase(Math.E, 2, 45));
 		System.out.println(decFracToBase(123.0, 2, 45));
 		System.out.println(decFracToBase(123.45, 8, 45));
 		System.out.println(decFracToBase(123.0, 16, 45));
