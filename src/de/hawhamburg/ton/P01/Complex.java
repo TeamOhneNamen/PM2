@@ -32,8 +32,12 @@ public final class Complex {
 	}
 
 	public static void main(String[] args) { // raus
-		System.out.println(Complex.ofCart(0.0, 1.0).polar());
-		System.out.println(Complex.ofCart(0.0, 1.0).hashCode());
+		//System.out.println(Complex.ofCart(0.0, 1.0).polar());
+		//System.out.println(Complex.ofCart(0.0, 1.0).hashCode());
+		System.out.println(Complex.ofCart(1.0, 1.0).abs());
+		//System.out.println(Math.abs(1.23 - 2.3));
+		
+		
 	}
 
 	public double getRealNumber() {
@@ -146,8 +150,10 @@ public final class Complex {
 	}
 
 	public boolean equals(Object other) {
-		  if (other.getClass() == Number.class) {
+		  if (other.getClass() == Double.class) {
 			return (imaginaryNumber == 0 && realNumber == (double)other);
+		}else if (other.getClass() == Integer.class) {
+			return (imaginaryNumber == 0 && realNumber == (double)((int)other));
 		}else if (other.getClass() == Complex.class){
 			return (realNumber == ((Complex)other).getRealNumber() && imaginaryNumber == ((Complex)other).getImaginaryNumber());
 		}else {
