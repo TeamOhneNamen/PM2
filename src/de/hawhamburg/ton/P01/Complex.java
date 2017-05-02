@@ -36,8 +36,6 @@ public final class Complex {
 		//System.out.println(Complex.ofCart(0.0, 1.0).hashCode());
 		System.out.println(Complex.ofCart(1.0, 1.0).abs());
 		//System.out.println(Math.abs(1.23 - 2.3));
-		
-		
 	}
 
 	public double getRealNumber() {

@@ -1,6 +1,7 @@
 /**
  * ComplexTest.java tests if the Class has the same attributes as 
- * the corresponding Ruby class Complex (Complex Ruby Stdlib 1.8.7).
+ * the corresponding Ruby class Complex (Complex Ruby Stdlib 1.8.7) and
+ * has all demanded attributes .
  * 
  * @author Ferdinand Trendelenburg.
  * @author Thorben Schomacker.
@@ -17,6 +18,12 @@ public class ComplexTest {
 	public Complex comp2 = Complex.ofCart(1.0, 0.0);
 	public Complex comp3 = Complex.ofCart(5.0, 0.0);
 	public Complex comp4 = Complex.ofCart(1.0, 1.0);
+	
+	// all took from the equivalent method in ruby
+	public double arg 	= 0.7853981633974483; 	//Complex(1.0,1.0).arg
+	public double abs 	= 1.4142135623730951; 	//Complex(1.0,1.0).abs
+	public double abs2 	= 2.0;					//Complex(1.0,1.0).abs2
+
 	
 	public double dou = 1.0;
 	public double highdou = 1234.567;
@@ -58,6 +65,12 @@ public class ComplexTest {
 		assertTrue(comp1.equals(comp2));
 		assertFalse(comp1.equals(comp3));
 	}
-
-
+	
+	@Test
+	public void sameValuesRuby(){
+		assertEquals(comp4.arg(),arg, 0.00);
+		assertEquals(comp4.abs(),abs, 0.00);
+		assertEquals(comp4.abs2(),abs2, 0.00);
+		//if arg and abs working, the method polar is also working
+	}
 }
