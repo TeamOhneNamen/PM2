@@ -7,7 +7,7 @@ package de.hawhamburg.ton.P01;
  * @author Ferdinand Trendelenburg.
  * @author Thorben Schomacker.
  *
- *
+ * Das ist eine Klasse die in wesentlichen teilen eine Complexe Zahl repräsentiert
  */
 
 public final class Complex {

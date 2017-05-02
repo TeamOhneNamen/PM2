@@ -3,6 +3,8 @@ package de.hawhamburg.ton.P02;
 /**
  * @author Thorben Schomacker
  * @author Ferdinand Trendelenburg
+ * 
+ * Diese Klasse rechnet Dezimalzahlen in gewünschte Basen um.
  */
 
 public class Operatoren {
@@ -27,7 +29,7 @@ public class Operatoren {
 			return decIntToBase(vorKomma, base);
 		} else {
 			return (decIntToBase(vorKomma, base) + "." + decPlaceToBase(nachKomma, base, accuracy) 
-			+ "   - PrÃ¤zise bis zur " + accuracy + ". Stelle nach dem Komma");
+			+ "   - Präzise bis zur " + accuracy + ". Stelle nach dem Komma");
 		}
 	}
 	

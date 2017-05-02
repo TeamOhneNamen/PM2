@@ -5,6 +5,8 @@ import java.util.Date;
 /**
  * @author Thorben Schomacker
  * @author Ferdinand Trendelenburg
+ * 
+ * Hier handelt es sich um eine Klasse die den Ressourcenverbrauch verschiedener Operationen testet
  */
 public class Ressourcenverbrauch {
 
@@ -14,7 +16,6 @@ public class Ressourcenverbrauch {
 	}
 	
 	public static void compare(){
-		int places = 5;
 		
 		final int oneDec = 53;
 		final int twoDec = 2724;
@@ -32,11 +33,6 @@ public class Ressourcenverbrauch {
 		
 		// Addition compared in milliseconds.
 		beforeDec = new Date().getTime();
-		resultDec = oneDec + twoDec;
-		resultDec = twoDec + twoDec;
-		resultDec = twoDec + oneDec;
-		resultDec = oneDec + oneDec;
-		resultDec = oneDec + twoDec;
 		resultDec = oneDec + twoDec;
 		afterDec = new Date().getTime();
 		System.out.println("Addition compared in milliseconds(decimal): " + "\t\t" + (afterDec - beforeDec) + "\t" + "=" + afterDec + "-" + beforeDec);

@@ -1,7 +1,7 @@
 /* author: Thorben Schomacker
  * author: Ferdinand Trendelenburg
  * 
- * Diese Klasse ist eine KLasse, die zusammengewÃ¼rfelt ist mit den Aufgaben der Aufgabe 02
+ * Diese Klasse ist eine Klasse, die zusammengew�rfelt ist mit den Aufgaben der Aufgabe 02
 **/
 package de.hawhamburg.ton.P02;
 
