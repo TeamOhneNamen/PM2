@@ -19,7 +19,9 @@ public class Operatoren {
 	
 	//accuracy - defines how many decimal places you want to convert. A recommandable value is 45.
 	public static String decFracToBase(double decimalFraction, int base, int accuracy){ 
-		int vorKomma = (int) decimalFraction;
+		double vorDemKommaDouble = Math.floor(decimalFraction);
+		Double vorDemKomma = vorDemKommaDouble;
+		int vorKomma = vorDemKomma.intValue();
 		double nachKomma = decimalFraction - vorKomma;
 		if (nachKomma == 0.0){
 			return decIntToBase(vorKomma, base);
@@ -35,13 +37,14 @@ public class Operatoren {
 		String baseDecPlace = "";
 		
 		while (count != accuracy && decPlace > 0) {
-			prePoint = (int) (decPlace * (double) base);
+			Double prePointDouble = decPlace * base;
+			prePoint = prePointDouble.intValue();
 			if (base > 10 && prePoint > 10){
-				baseDecPlace = baseDecPlace + (prePoint + 55);
+				baseDecPlace = baseDecPlace + prePoint + 55;
 			}else {
 				baseDecPlace = baseDecPlace + prePoint;
 				}
-			decPlace = decPlace * (double) base - prePoint;
+			decPlace = decPlace * base - prePoint;
 			
 			count++;
 		}
