@@ -1,5 +1,5 @@
 /**
- * Gui.java
+  * Gui.java
  * @author Ferdinand Trendelenburg.
  * @author Thorben Schomacker.
  */
