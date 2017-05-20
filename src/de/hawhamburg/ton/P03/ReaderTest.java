@@ -9,6 +9,11 @@ public class ReaderTest {
 
 	@Before
 	public void setUp() throws Exception {
+		
+		String str1 = "";
+		String str2 = "Nun also wären Kuben dran -";
+		String str3 = "Sehr geehrter Kunsthändler Kahnweiler,";
+		
 	}
 
 	@Test
@@ -43,7 +48,10 @@ public class ReaderTest {
 
 	@Test
 	public void testInWelcherZeile() {
-		fail("Not yet implemented");
+		
+		
+		
+		
 	}
 
 	@Test
