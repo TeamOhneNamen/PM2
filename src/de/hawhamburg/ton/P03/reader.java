@@ -48,7 +48,7 @@ public class Reader {
 
 		System.out.println(inWelcherZeile("Bares"));
 
-		String[] ergebnis = bubblesort(eineListeVonZeilen);
+		String[] ergebnis = nachLetztesWortSortieren(eineListeVonZeilen);
 		
 		System.out.println(ausgabe(ergebnis));
 		
@@ -208,15 +208,11 @@ public class Reader {
 		
 	}
 
-	public static void nachLetztesWortSortieren() {
-
-		ArrayList<String> neueListeVonLeilen = new ArrayList<String>();
-
-	}
-
-	public static String[] bubblesort(ArrayList<String> altZuSortieren) {
+	public static String[] nachLetztesWortSortieren(ArrayList<String> altZuSortieren) {
 		
 		String[] zusortieren = arrayInArrayList(altZuSortieren);
+		
+		zusortieren = removeMinus(zusortieren);
 		
 		String temp;
 		for (int i = 1; i < zusortieren.length; i++) {
@@ -232,6 +228,29 @@ public class Reader {
 		}
 
 		return zusortieren;
+	}
+
+	private static String[] removeMinus(String[] altZuSortieren) {
+		
+		String[] listeOhneMinus = new String[altZuSortieren.length];
+		
+		for (int i = 0; i < altZuSortieren.length; i++) {
+		
+			if (last(altZuSortieren[i]).equals("-")) {
+				 
+				listeOhneMinus[i] =  altZuSortieren[i].replaceAll("-", "");
+				
+			} else {
+
+				listeOhneMinus[i] = altZuSortieren[i];
+				
+			}
+			
+		}
+		
+		
+		return listeOhneMinus;
+		
 	}
 
 }

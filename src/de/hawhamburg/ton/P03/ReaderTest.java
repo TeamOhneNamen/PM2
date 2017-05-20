@@ -2,8 +2,6 @@ package de.hawhamburg.ton.P03;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,17 +9,6 @@ public class ReaderTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
-		ArrayList<String> li1 = new ArrayList<String>();
-		
-		
-		
-		
-	}
-
-	@Test
-	public void testInZeilenAufteilen() {
-		fail("Not yet implemented");
 	}
 
 	@Test
@@ -35,7 +22,12 @@ public class ReaderTest {
 	}
 
 	@Test
-	public void testLast() {
+	public void testLastInt() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testLastString() {
 		fail("Not yet implemented");
 	}
 
@@ -46,6 +38,16 @@ public class ReaderTest {
 
 	@Test
 	public void testSortieren() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testInWelcherZeile() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testNachLetztesWortSortieren() {
 		fail("Not yet implemented");
 	}
 
