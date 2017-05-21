@@ -26,7 +26,8 @@ public class Reader {
 //		System.out.println(eineListeVonZeilen);
 
 		System.out.println(inWelcherZeile("Bares"));
-
+		System.out.println(contains("Bares"));
+		
 //		String[] ergebnis = nachLetztesWortSortieren(eineListeVonZeilen);
 //		
 //		System.out.println(ausgabe(ergebnis));
@@ -194,6 +195,22 @@ public class Reader {
 		//System.out.println(Arrays.binarySearch(arrayInArrayList(woerterEinerZeile), str));
 
 		return Arrays.binarySearch(arrayInArrayList(woerterEinerZeile), str);
+	}
+	
+	public static ArrayList<String> contains(String str) {
+
+		ArrayList<String> found = new ArrayList<>();
+
+		for (int i = 0; i < eineListeVonZeilen.size(); i++) {
+
+			String zeile = (eineListeVonZeilen.get(i));
+			if (zeile.contains(str)){
+				found.add(zeile);
+			}
+
+		}
+
+		return found;
 	}
 	
 	public static String[] arrayInArrayList(ArrayList<String> woerterEinerZeile){
