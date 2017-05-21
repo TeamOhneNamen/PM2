@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-import org.junit.experimental.theories.FromDataPoints;
-
 public class Reader {
 
 	public static ArrayList<String> eineListeVonZeilen = new ArrayList<String>();
@@ -13,7 +11,30 @@ public class Reader {
 
 	public static void main(String[] args) {
 
-		File file = new File("bin/de/hawhamburg/ton/P03/picasso.txt");
+		readByLines("bin/de/hawhamburg/ton/P03/picasso.txt");
+
+
+//		System.out.println(last(5));
+//		System.out.println(last(6));
+//
+//		System.out.println(reimChecker(5, 6));
+//		System.out.println(gibZeile(15));
+//		System.out.println(gibZeile("Sie schaffen nicht mal Tuben an."));
+//
+//		System.out.println(sortieren(eineListeVonZeilen));
+//		System.out.println(eineListeVonZeilen);
+
+		System.out.println(inWelcherZeile("Bares"));
+
+//		String[] ergebnis = nachLetztesWortSortieren(eineListeVonZeilen);
+//		
+//		System.out.println(ausgabe(ergebnis));
+		
+	}
+	
+	//reads text from source
+	public static Scanner read(String source){
+		File file = new File(source);
 
 		Scanner sc = null;
 
@@ -22,38 +43,24 @@ public class Reader {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
-		// in Zeilen aufteilen
-		if (sc.hasNextLine()) {
-
-			while (sc.hasNextLine()) {
-
-				inZeilenAufteilen(sc.nextLine());
-			}
-		} else {
-
-			throw new NullPointerException();
-
-		}
-
-		System.out.println(last(5));
-		System.out.println(last(6));
-
-		System.out.println(reimChecker(5, 6));
-		System.out.println(gibZeile(15));
-		System.out.println(gibZeile("Sie schaffen nicht mal Tuben an."));
-
-		System.out.println(sortieren(eineListeVonZeilen));
-		System.out.println(eineListeVonZeilen);
-
-		System.out.println(inWelcherZeile("Bares"));
-
-		String[] ergebnis = nachLetztesWortSortieren(eineListeVonZeilen);
-		
-		System.out.println(ausgabe(ergebnis));
-		
+		return sc;
 	}
 	
+	public static ArrayList<String> cutInLines(Scanner sc) {
+	
+		while (sc.hasNextLine()) {
+			eineListeVonZeilen.add(sc.nextLine());
+		}
+		
+		return eineListeVonZeilen;
+	}
+	
+	public static ArrayList<String> readByLines(String source) {
+		return cutInLines(read(source));
+	}
+	
+
+	//return a concatenated string of all elements of the given string array
 	public static String ausgabe(String[] str) {
 		
 		String erg = "";
@@ -63,10 +70,6 @@ public class Reader {
 		}
 		
 		return erg;
-	}
-
-	public static void inZeilenAufteilen(String nextLine) {
-		eineListeVonZeilen.add(nextLine);
 	}
 
 	public static String gibZeile(int zeilennummer) {
@@ -84,15 +87,14 @@ public class Reader {
 		return zeile;
 	}
 
+	// returns the last word of the line which has the given number	
 	public static String last(int zeile) {
-
-		String temp = eineListeVonZeilen.get((zeile - 1));
 
 		ArrayList<String> eineListeVonWoertern = new ArrayList<String>();
 
-		String ergebnis = "nichts vorhanden";
+		String ergebnis = null;
 
-		newSc = new Scanner(temp);
+		newSc = new Scanner(eineListeVonZeilen.get((zeile - 1)));
 
 		while (newSc.hasNext()) {
 
@@ -104,7 +106,8 @@ public class Reader {
 		ergebnis = eineListeVonWoertern.get(laenge - 1);
 		return ergebnis;
 	}
-	
+
+	// returns the number of the line which has the given word at the end
 	public static String last(String str) {
 
 		ArrayList<String> eineListeVonWoertern = new ArrayList<String>();
@@ -166,7 +169,7 @@ public class Reader {
 		return listcopy;
 	}
 
-	public static int inWelcherZeile(String str) {
+	public static ArrayList<String> inWelcherZeile(String str) {
 
 		ArrayList<String> woerterEinerZeile = new ArrayList<>();
 
@@ -186,13 +189,10 @@ public class Reader {
 
 		Collections.sort(woerterEinerZeile.subList(0, woerterEinerZeile.size()));
 
-		System.out.println(woerterEinerZeile.toString());
+		//System.out.println(woerterEinerZeile.toString());
+		//System.out.println(Arrays.binarySearch(arrayInArrayList(woerterEinerZeile), str));
 
-		
-
-		System.out.println(Arrays.binarySearch(arrayInArrayList(woerterEinerZeile), str));
-
-		return 0;
+		return woerterEinerZeile;
 	}
 	
 	public static String[] arrayInArrayList(ArrayList<String> woerterEinerZeile){

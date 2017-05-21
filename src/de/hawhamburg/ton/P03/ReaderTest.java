@@ -2,61 +2,80 @@ package de.hawhamburg.ton.P03;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
+import java.util.ArrayList;
 import org.junit.Test;
 
 public class ReaderTest {
-
-	@Before
-	public void setUp() throws Exception {
-		
-		String str1 = "";
-		String str2 = "Nun also wären Kuben dran -";
-		String str3 = "Sehr geehrter Kunsthändler Kahnweiler,";
-		
-	}
+	
+	String text1source 				= "bin/de/hawhamburg/ton/P03/testtext.txt";
+	String text2source 				= "bin/de/hawhamburg/ton/P03/testtext2.txt";
+	
+	String[] text1arry 				= {"Die Ordnung des Tages,", "liegt noch im Schlaf.", "Das unaufgeräumte Gestern,", "könnte sich zum Konjuktiv erheben."};
+	String[] text2arry 				= {"Wird ich nicht nach Tarif bezahlt,", "wird ab sofort naiv gemalt.", "asdf."};
+	
+	String[] text1arrysorted 		= {"Das unaufgeräumte Gestern,", "Die Ordnung des Tages,", "liegt noch im Schlaf.", "könnte sich zum Konjuktiv erheben."};
+	String[] text1arrysortedlast 	= {"könnte sich zum Konjuktiv erheben.", "Das unaufgeräumte Gestern,", "liegt noch im Schlaf.", "Die Ordnung des Tages,"};
+	
+	String text1arry1 				= "Die Ordnung des Tages,";
+	String text1arry1last 			= "Tages,";
+	
+	String blank 					= "";
+	String lineEndMinus 			= "Nun also wären Kuben dran -";
+	String lineEndComma 			= "Sehr geehrter Kunsthändler Kahnweiler,";
+	
+	ArrayList<String> readText1 = Reader.readByLines(text1source);
 
 	@Test
 	public void testGibZeileInt() {
-		fail("Not yet implemented");
+		Reader.readByLines(text1source);
+		assertEquals(Reader.gibZeile(1) , text1arry1);
+	}
+	
+	@Test
+	public void testReadByLines() {
+		assertEquals((Reader.readByLines(text1source)).toString(), text1arry);
 	}
 
 	@Test
 	public void testGibZeileString() {
-		fail("Not yet implemented");
+		Reader.readByLines(text1source);
+		assertEquals(Reader.gibZeile(text1arry1) , 1);
 	}
 
 	@Test
 	public void testLastInt() {
-		fail("Not yet implemented");
+		Reader.readByLines(text1source);
+		assertEquals(Reader.last(1) , text1arry1last);
 	}
 
 	@Test
 	public void testLastString() {
-		fail("Not yet implemented");
+		Reader.readByLines(text1source);
+		assertEquals(Reader.last(text1arry1last) , "0");
 	}
 
 	@Test
 	public void testReimChecker() {
-		fail("Not yet implemented");
+		Reader.readByLines(text2source);
+		assertTrue(Reader.reimChecker(1,2));
+		assertFalse(Reader.reimChecker(2,3));
 	}
 
 	@Test
 	public void testSortieren() {
-		fail("Not yet implemented");
+		Reader.readByLines(text1source);
+		assertEquals(Reader.sortieren(readText1), text1arrysorted);
 	}
 
 	@Test
 	public void testInWelcherZeile() {
-		
-		
-		
-		
+		fail("Not yet implemented");	
 	}
 
 	@Test
 	public void testNachLetztesWortSortieren() {
-		fail("Not yet implemented");
+		Reader.readByLines(text1source);
+		assertEquals(Reader.sortieren(readText1), text1arrysortedlast);
 	}
 
 }
