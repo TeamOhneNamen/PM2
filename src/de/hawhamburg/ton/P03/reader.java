@@ -191,7 +191,7 @@ public class Reader {
 
 		Collections.sort(woerterEinerZeile.subList(0, woerterEinerZeile.size()));
 
-		//System.out.println(woerterEinerZeile.toString());
+		System.out.println(woerterEinerZeile.toString());
 		//System.out.println(Arrays.binarySearch(arrayInArrayList(woerterEinerZeile), str));
 
 		return Arrays.binarySearch(arrayInArrayList(woerterEinerZeile), str);
