@@ -8,6 +8,7 @@ public class Reader {
 
 	public static ArrayList<String> eineListeVonZeilen = new ArrayList<String>();
 	private static Scanner newSc;
+	private static Scanner sc;
 
 	public static void main(String[] args) {
 
@@ -169,7 +170,7 @@ public class Reader {
 		return listcopy;
 	}
 
-	public static ArrayList<String> inWelcherZeile(String str) {
+	public static int inWelcherZeile(String str) {
 
 		ArrayList<String> woerterEinerZeile = new ArrayList<>();
 
@@ -177,7 +178,7 @@ public class Reader {
 
 			String zeile = (eineListeVonZeilen.get(i));
 
-			Scanner sc = new Scanner(zeile);
+			sc = new Scanner(zeile);
 
 			while (sc.hasNext()) {
 
@@ -192,7 +193,7 @@ public class Reader {
 		//System.out.println(woerterEinerZeile.toString());
 		//System.out.println(Arrays.binarySearch(arrayInArrayList(woerterEinerZeile), str));
 
-		return woerterEinerZeile;
+		return Arrays.binarySearch(arrayInArrayList(woerterEinerZeile), str);
 	}
 	
 	public static String[] arrayInArrayList(ArrayList<String> woerterEinerZeile){

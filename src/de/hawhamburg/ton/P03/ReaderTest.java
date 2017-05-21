@@ -69,7 +69,8 @@ public class ReaderTest {
 
 	@Test
 	public void testInWelcherZeile() {
-		fail("Not yet implemented");	
+		Reader.readByLines(text1source);
+		assertEquals(Reader.inWelcherZeile("Ordnung"), 1);	
 	}
 
 	@Test
