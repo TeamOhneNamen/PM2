@@ -1,0 +1,17 @@
+//		System.out.println(last(5));
+//		System.out.println(last(6));
+//
+//		System.out.println(reimChecker(5, 6));
+//		System.out.println(gibZeile(15));
+//		System.out.println(gibZeile("Sie schaffen nicht mal Tuben an."));
+//
+//		System.out.println(sortieren(eineListeVonZeilen));
+//		System.out.println(eineListeVonZeilen);
+
+		System.out.println(inWelcherZeile("Bares"));
+		System.out.println(contains("Bares"));
+		
+//		String[] ergebnis = nachLetztesWortSortieren(eineListeVonZeilen);
+//		
+//		System.out.println(ausgabe(ergebnis));
+		
