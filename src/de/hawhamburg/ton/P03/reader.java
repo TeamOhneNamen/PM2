@@ -247,6 +247,21 @@ public class Reader {
 
 		return zusortieren;
 	}
+	
+	public String compareTo(String[] Liste) {
+		
+		return this.compareTo(last(Liste));
+		
+	}
+	
+	public static String[] sortByLast(ArrayList<String> altZuSortieren){
+		
+		String[] zusortieren = arrayInArrayList(altZuSortieren);
+		
+		zusortieren = removeMinus(zusortieren);
+		
+		Collections.sort(zusortieren, );
+	}
 
 	private static String[] removeMinus(String[] altZuSortieren) {
 		
