@@ -14,28 +14,28 @@ public class Reader {
 
 		readByLines("bin/de/hawhamburg/ton/P03/picasso.txt");
 
-
-//		System.out.println(last(5));
-//		System.out.println(last(6));
-//
-//		System.out.println(reimChecker(5, 6));
-//		System.out.println(gibZeile(15));
-//		System.out.println(gibZeile("Sie schaffen nicht mal Tuben an."));
-//
-//		System.out.println(sortieren(eineListeVonZeilen));
-//		System.out.println(eineListeVonZeilen);
+		// System.out.println(last(5));
+		// System.out.println(last(6));
+		//
+		// System.out.println(reimChecker(5, 6));
+		// System.out.println(gibZeile(15));
+		// System.out.println(gibZeile("Sie schaffen nicht mal Tuben an."));
+		//
+		// System.out.println(sortieren(eineListeVonZeilen));
+		// System.out.println(eineListeVonZeilen);
 
 		System.out.println(inWelcherZeile("Bares"));
 		System.out.println(contains("Bares"));
-		
-//		String[] ergebnis = nachLetztesWortSortieren(eineListeVonZeilen);
-//		
-//		System.out.println(ausgabe(ergebnis));
-		
+
+		ArrayList<String> ergebnis = sortByLast(eineListeVonZeilen);
+		System.out.println(ergebnis);
+		//
+		// System.out.println(ausgabe(ergebnis));
+
 	}
-	
-	//reads text from source
-	public static Scanner read(String source){
+
+	// reads text from source
+	public static Scanner read(String source) {
 		File file = new File(source);
 
 		Scanner sc = null;
@@ -47,30 +47,29 @@ public class Reader {
 		}
 		return sc;
 	}
-	
+
 	public static ArrayList<String> cutInLines(Scanner sc) {
-	
+
 		while (sc.hasNextLine()) {
 			eineListeVonZeilen.add(sc.nextLine());
 		}
-		
+
 		return eineListeVonZeilen;
 	}
-	
+
 	public static ArrayList<String> readByLines(String source) {
 		return cutInLines(read(source));
 	}
-	
 
-	//return a concatenated string of all elements of the given string array
+	// return a concatenated string of all elements of the given string array
 	public static String ausgabe(String[] str) {
-		
+
 		String erg = "";
-		
+
 		for (int i = 0; i < str.length; i++) {
-			erg = erg+str[i];
+			erg = erg + str[i];
 		}
-		
+
 		return erg;
 	}
 
@@ -89,7 +88,7 @@ public class Reader {
 		return zeile;
 	}
 
-	// returns the last word of the line which has the given number	
+	// returns the last word of the line which has the given number
 	public static String last(int zeile) {
 
 		ArrayList<String> eineListeVonWoertern = new ArrayList<String>();
@@ -125,12 +124,12 @@ public class Reader {
 		}
 
 		int laenge = eineListeVonWoertern.size();
-		if (laenge>1) {
+		if (laenge > 1) {
 			ergebnis = eineListeVonWoertern.get(laenge - 1);
-		}else{
+		} else {
 			ergebnis = "0";
 		}
-		
+
 		return ergebnis;
 	}
 
@@ -164,7 +163,7 @@ public class Reader {
 
 	public static ArrayList<String> sortieren(ArrayList<String> list) {
 
-		ArrayList<String> listcopy = (ArrayList<String>) list.clone();
+		ArrayList<String> listcopy = list;
 
 		Collections.sort(listcopy.subList(0, listcopy.size()));
 
@@ -192,11 +191,12 @@ public class Reader {
 		Collections.sort(woerterEinerZeile.subList(0, woerterEinerZeile.size()));
 
 		System.out.println(woerterEinerZeile.toString());
-		//System.out.println(Arrays.binarySearch(arrayInArrayList(woerterEinerZeile), str));
+		// System.out.println(Arrays.binarySearch(arrayInArrayList(woerterEinerZeile),
+		// str));
 
 		return Arrays.binarySearch(arrayInArrayList(woerterEinerZeile), str);
 	}
-	
+
 	public static ArrayList<String> contains(String str) {
 
 		ArrayList<String> found = new ArrayList<>();
@@ -204,7 +204,7 @@ public class Reader {
 		for (int i = 0; i < eineListeVonZeilen.size(); i++) {
 
 			String zeile = (eineListeVonZeilen.get(i));
-			if (zeile.contains(str)){
+			if (zeile.contains(str)) {
 				found.add(zeile);
 			}
 
@@ -212,78 +212,80 @@ public class Reader {
 
 		return found;
 	}
-	
-	public static String[] arrayInArrayList(ArrayList<String> woerterEinerZeile){
-		
+
+	public static String[] arrayInArrayList(ArrayList<String> woerterEinerZeile) {
+
 		String[] strArray = new String[woerterEinerZeile.size()];
 
 		for (int i = 0; i < strArray.length; i++) {
 			strArray[i] = woerterEinerZeile.get(i);
 
 		}
-		
+
 		return strArray;
-		
+
 	}
 
-	public static String[] nachLetztesWortSortieren(ArrayList<String> altZuSortieren) {
-		
-		String[] zusortieren = arrayInArrayList(altZuSortieren);
-		
-		zusortieren = removeMinus(zusortieren);
-		
-		String temp;
-		for (int i = 1; i < zusortieren.length; i++) {
-			for (int j = 0; j < zusortieren.length - i; j++) {
-				if (last(zusortieren[j]).substring(0, 1).toCharArray()[0] >=  last(zusortieren[j + 1]).substring(0, 1).toCharArray()[0]) {
-					System.out.println("so: "+ last(zusortieren[j]));
-					temp = zusortieren[j];
-					zusortieren[j] = zusortieren[j + 1];
-					zusortieren[j + 1] = temp;
+//	public static String[] nachLetztesWortSortieren(ArrayList<String> altZuSortieren) {
+//
+//		String[] zusortieren = arrayInArrayList(altZuSortieren);
+//
+//		zusortieren = removeMinus(zusortieren);
+//
+//		String temp;
+//		for (int i = 1; i < zusortieren.length; i++) {
+//			for (int j = 0; j < zusortieren.length - i; j++) {
+//				if (last(zusortieren[j]).substring(0, 1).toCharArray()[0] >= last(zusortieren[j + 1]).substring(0, 1)
+//						.toCharArray()[0]) {
+//					System.out.println("so: " + last(zusortieren[j]));
+//					temp = zusortieren[j];
+//					zusortieren[j] = zusortieren[j + 1];
+//					zusortieren[j + 1] = temp;
+//
+//				}
+//			}
+//		}
+//
+//		return zusortieren;
+//	}
 
-				}
+	public static ArrayList<String> sortByLast(ArrayList<String> zuSortieren){
+		
+		ArrayList<String> zuSortierenCopy = (ArrayList<String>) zuSortieren.clone();
+		
+		zuSortierenCopy = removeMinus(zuSortierenCopy);
+		
+		Collections.sort(zuSortierenCopy, new Comparator<String>(){
+			
+			@Override
+			public int compare(String o1, String o2){
+				return last(o1).compareTo(last(o2));
 			}
-		}
-
-		return zusortieren;
-	}
+		});
 	
-	public String compareTo(String[] Liste) {
-		
-		return this.compareTo(last(Liste));
-		
-	}
-	
-	public static String[] sortByLast(ArrayList<String> altZuSortieren){
-		
-		String[] zusortieren = arrayInArrayList(altZuSortieren);
-		
-		zusortieren = removeMinus(zusortieren);
-		
-		Collections.sort(zusortieren, );
+		return zuSortierenCopy;
 	}
 
-	private static String[] removeMinus(String[] altZuSortieren) {
-		
-		String[] listeOhneMinus = new String[altZuSortieren.length];
-		
-		for (int i = 0; i < altZuSortieren.length; i++) {
-		
-			if (last(altZuSortieren[i]).equals("-")) {
-				 
-				listeOhneMinus[i] =  altZuSortieren[i].replaceAll("-", "");
-				
+	private static ArrayList<String> removeMinus(ArrayList<String> altZuSortieren) {
+
+		ArrayList<String> listeOhneMinus = new ArrayList<String>();
+
+		for (int i = 0; i < altZuSortieren.size(); i++) {
+
+			if (last(altZuSortieren.get(i)).equals("-")) {
+
+				listeOhneMinus.add(altZuSortieren.get(i).replaceAll("-", ""));
+
 			} else {
 
-				listeOhneMinus[i] = altZuSortieren[i];
-				
+				listeOhneMinus.add(altZuSortieren.get(i));
+
 			}
-			
+
 		}
-		
-		
+
 		return listeOhneMinus;
-		
+
 	}
 
 }
