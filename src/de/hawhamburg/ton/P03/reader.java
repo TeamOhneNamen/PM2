@@ -1,3 +1,13 @@
+/**
+ * An immutable class for complex numbers, modeled after the corresponding Ruby
+ * class Complex (Complex Ruby Stdlib 1.8.7).
+ * 
+ * @author Ferdinand Trendelenburg.
+ * @author Thorben Schomacker.
+ *
+
+ */
+
 package de.hawhamburg.ton.P03;
 
 import java.io.File;
@@ -10,7 +20,7 @@ public class Reader {
 	private static Scanner newSc;
 	private static Scanner sc;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 
 		readByLines("bin/de/hawhamburg/ton/P03/picasso.txt");
 
@@ -27,7 +37,7 @@ public class Reader {
 		System.out.println(inWelcherZeile("Bares"));
 		System.out.println(contains("Bares"));
 
-		ArrayList<String> ergebnis = sortByLast(eineListeVonZeilen);
+		List<String> ergebnis = sortByLast(eineListeVonZeilen);
 		System.out.println(ergebnis);
 		//
 		// System.out.println(ausgabe(ergebnis));
@@ -35,31 +45,23 @@ public class Reader {
 	}
 
 	// reads text from source
-	public static Scanner read(String source) {
+
+
+	public static List<String> readByLines(String source) throws FileNotFoundException {
+
 		File file = new File(source);
-
-		Scanner sc = null;
-
-		try {
-			sc = new Scanner(file);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return sc;
-	}
-
-	public static ArrayList<String> cutInLines(Scanner sc) {
-
-		while (sc.hasNextLine()) {
-			eineListeVonZeilen.add(sc.nextLine());
-		}
-
+		
+		try (Scanner sc = new Scanner(file)) {
+	    	
+			while (sc.hasNextLine()) {
+				eineListeVonZeilen.add(sc.nextLine());
+			}
+	    }
+		
 		return eineListeVonZeilen;
 	}
 
-	public static ArrayList<String> readByLines(String source) {
-		return cutInLines(read(source));
-	}
+
 
 	// return a concatenated string of all elements of the given string array
 	public static String ausgabe(String[] str) {
@@ -111,7 +113,7 @@ public class Reader {
 	// returns the number of the line which has the given word at the end
 	public static String last(String str) {
 
-		ArrayList<String> eineListeVonWoertern = new ArrayList<String>();
+		List<String> eineListeVonWoertern = new ArrayList<String>();
 
 		String ergebnis = "nichts vorhanden";
 
@@ -161,9 +163,9 @@ public class Reader {
 	}
 	// Aufgabe 2
 
-	public static ArrayList<String> sortieren(ArrayList<String> list) {
+	public static List<String> sortieren(List<String> list) {
 
-		ArrayList<String> listcopy = list;
+		List<String> listcopy = list;
 
 		Collections.sort(listcopy.subList(0, listcopy.size()));
 
@@ -249,9 +251,9 @@ public class Reader {
 //		return zusortieren;
 //	}
 
-	public static ArrayList<String> sortByLast(ArrayList<String> zuSortieren){
+	public static List<String> sortByLast(List<String> zuSortieren){
 		
-		ArrayList<String> zuSortierenCopy = (ArrayList<String>) zuSortieren.clone();
+		List<String> zuSortierenCopy = new ArrayList<String>( zuSortieren);
 		
 		zuSortierenCopy = removeMinus(zuSortierenCopy);
 		
@@ -266,7 +268,7 @@ public class Reader {
 		return zuSortierenCopy;
 	}
 
-	private static ArrayList<String> removeMinus(ArrayList<String> altZuSortieren) {
+	private static List<String> removeMinus(List<String> altZuSortieren) {
 
 		ArrayList<String> listeOhneMinus = new ArrayList<String>();
 
