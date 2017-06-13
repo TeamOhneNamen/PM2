@@ -31,12 +31,12 @@ public final class Complex {
 		imaginaryNumber = im;
 	}
 
-	public static void main(String[] args) { // raus
-		//System.out.println(Complex.ofCart(0.0, 1.0).polar());
-		//System.out.println(Complex.ofCart(0.0, 1.0).hashCode());
-		System.out.println(Complex.ofCart(1.0, 1.0).abs());
-		//System.out.println(Math.abs(1.23 - 2.3));
-	}
+//	public static void main(String[] args) { // raus
+//		//System.out.println(Complex.ofCart(0.0, 1.0).polar());
+//		//System.out.println(Complex.ofCart(0.0, 1.0).hashCode());
+////		System.out.println(Complex.ofCart(1.0, 1.0).abs());
+//		//System.out.println(Math.abs(1.23 - 2.3));
+//	}
 
 	public double getRealNumber() {
 		return realNumber;
