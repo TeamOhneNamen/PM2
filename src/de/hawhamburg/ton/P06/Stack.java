@@ -5,16 +5,17 @@
  */
 package de.hawhamburg.ton.P06;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class Stack {
 	
-	Object[] data = new Object[3];
-	int length = 3;
+	Object[] data;
 	
 	int pointer = 0;
 	
 	public Stack(int size){
-		Object[] data = new Object[size];
-		length = size;
+		data = new Object[size];
 	}
 	
 	public static void main(String[] args){
@@ -22,6 +23,7 @@ public class Stack {
 		System.out.println(s);
 		System.out.println(s.isEmpty());
 		System.out.println(s.length());
+		System.out.println(s.isFull());
 		s.push(5);
 		System.out.println(s);
 	}
@@ -40,18 +42,23 @@ public class Stack {
 	}
 	
 	public boolean isEmpty(){
-		Object[] emptyarry = new Object[3];
-		//return (data == emptyarry);
-		return (data.equals(emptyarry));
-		
+		boolean isEmpty = false;
+		int i = 0;
+		while(i < data.length && !(isEmpty)){
+			i++;
+			isEmpty = (data[i] == null);
+		}
+		return isEmpty;
+	}
+	
+	public boolean isFull(){
+		Object[] datarev = data;
+		Collections.reverse(Arrays.asList(datarev));
+		return !(datarev[1] == null);
 	}
 	
 	public String toString(){
-		String str = "";
-		for (int i = 0; i < data.length; i++){
-			if (data[i] != null) str = str + data[i].toString();
-		}
-		return str;
+		return Arrays.toString(data);
 	}
 	
 	public void extend(){
