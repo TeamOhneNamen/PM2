@@ -8,8 +8,6 @@ package de.hawhamburg.ton.P06;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
 /**
  * @author Thorben
  *
@@ -18,9 +16,17 @@ public class Fibonacci {
 
 	public static void main(String[] args) {
 		ArrayList<Integer> fibonacciFolge = new ArrayList<Integer>();
+		Stream.generate(Fibonacci::fibonacci).
+		limit(25).
+		forEach(n -> fibonacciFolge.add(n));
+		
+		ArrayList<Integer> collatzFolge = new ArrayList<Integer>();
 		Stream.generate(Fibonacci::collatz).
 		limit(25).
-		forEach(c -> fibonacciFolge.add(c));
+		forEach(c -> collatzFolge.add(c));
+		
+		System.out.println(fibonacciFolge);
+		System.out.println(collatzFolge);
 
 	}
 
@@ -38,7 +44,7 @@ public class Fibonacci {
 		return x;
 	}
 
-	static int c = 5;
+	static int c = 1;
 
 	private static int collatz() {
 		if(c == 0){
