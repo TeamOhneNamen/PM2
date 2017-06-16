@@ -5,7 +5,10 @@
  */
 package de.hawhamburg.ton.P06;
 
+import java.util.ArrayList;
 import java.util.stream.Stream;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 /**
  * @author Thorben
@@ -14,9 +17,10 @@ import java.util.stream.Stream;
 public class Fibonacci {
 
 	public static void main(String[] args) {
+		ArrayList<Integer> fibonacciFolge = new ArrayList<Integer>();
 		Stream.generate(Fibonacci::collatz).
 		limit(25).
-		forEach(System.out::println);
+		forEach(c -> fibonacciFolge.add(c));
 
 	}
 
