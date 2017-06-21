@@ -26,20 +26,20 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MainSet extends Application {
-	private static final int CANVAS_WIDTH = 800;
-	private static final int CANVAS_HEIGHT = 600;
+	private static final int CANVAS_WIDTH 	= 1000;
+	private static final int CANVAS_HEIGHT 	= 1000;
 	// scale to ensure the result will stay exactly the same as size of canvas
 	private static final double SCALE = CANVAS_WIDTH * 1.0 / CANVAS_HEIGHT;
 
 	// Left and right border
-	private static final int X_OFFSET = 25;
+	private static final int X_BORDER = 25;
 	// Top and bottom border
-	private static final int Y_OFFSET = 25;
+	private static final int Y_BORDERS = 25;
 
 	// Width of tempScene contains canvas
-	private static final int WIDTH = (2 * X_OFFSET) + CANVAS_WIDTH;
+	private static final int WIDTH = (2 * X_BORDER) + CANVAS_WIDTH;
 	// Height of tempScene contains canvas
-	private static final int HEIGHT = (2 * X_OFFSET) + CANVAS_HEIGHT;
+	private static final int HEIGHT = (2 * X_BORDER) + CANVAS_HEIGHT;
 
 	// threshold to prevent infinite iteration
 	private static final double THRESHOLD = 2.0;
@@ -88,8 +88,8 @@ public class MainSet extends Application {
 
 		// Set canvas to right position
 		canvas = new Canvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-		canvas.setLayoutX(X_OFFSET);
-		canvas.setLayoutY(Y_OFFSET);
+		canvas.setLayoutX(X_BORDER);
+		canvas.setLayoutY(Y_BORDERS);
 		
 		//add canvas into stackPane
 		ft.setNode(canvas);
@@ -194,7 +194,7 @@ public class MainSet extends Application {
 		// set Scene with root and same Height of canvas but wider because of
 		// GridPane
 		Scene scene = new Scene(rootPane, WIDTH + 200, HEIGHT);
-		primaryStage.setTitle("Fraktale");
+		primaryStage.setTitle("Fraktal");
 		primaryStage.setScene(scene);
 
 		// not allow to change size of Scene
@@ -237,7 +237,7 @@ public class MainSet extends Application {
 				if (nIteration != JuliaSet.MAX_ITERATION) {
 					gc.setFill(Color.color(scale / 500, scale / 255, 0));
 				} else {
-					gc.setFill(Color.PURPLE);
+					gc.setFill(Color.GREEN);
 				}
 
 				// fill color for round as Point(x,y) with 1x1 pixel

@@ -24,12 +24,30 @@ public class Stack {
 		System.out.println(s.isEmpty());
 		System.out.println(s.length());
 		System.out.println(s.isFull());
+		
 		s.push(5);
 		System.out.println(s);
+		System.out.println(s.length());
+		System.out.println(s.isFull());
+		
+		s.push("hallo");
+		System.out.println(s);
+		System.out.println(s.length());
+		System.out.println(s.isFull());
+		
+		s.push("hallo");
+		System.out.println(s);
+		System.out.println(s.length());
+		System.out.println(s.isFull());
+		
+		s.push("hallo");
+		System.out.println(s);
+		System.out.println(s.length());
+		System.out.println(s.isFull());
 	}
 	
 	public void push(Object element){
-		if (pointer >= data.length){
+		if (length() >= data.length){
 			extend();
 		}
 		data[pointer] = element;
@@ -58,12 +76,16 @@ public class Stack {
 	}
 	
 	public String toString(){
-		return Arrays.toString(data);
+		String output = "";
+		for(int i = 0; i < length(); i++){
+			output += data[i] + ", ";
+		}
+		return output;
 	}
 	
 	public void extend(){
 		int count = 0;
-		Object[] ext_data = new Object[(length * 2)];
+		Object[] ext_data = new Object[(data.length * 2)];
 		while (count < data.length){
 			ext_data[count] = data[count];
 			count++;
@@ -72,7 +94,7 @@ public class Stack {
 	}
 	
 	public int length(){
-		return data.length;
+		return pointer;
 	}
 
 }
