@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import com.sun.xml.internal.ws.util.StringUtils;
 
+
 public class StreamsKnuth {
 
 	public static void main(String[] args) throws FileNotFoundException {
@@ -28,8 +29,13 @@ public class StreamsKnuth {
 		.forEach(str -> all_3_16.add(str))
 		;
 		
+		String line = "aaa";
+		
+		int count = line.length() - line.replace("a", "").length();
+		
 		System.out.println(all_3_16);
 		System.out.println(all_3_16.size());
+		System.out.println(count);
 	}
 
 }
