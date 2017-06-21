@@ -24,7 +24,9 @@ public class StreamsKnuth {
 		bufferedReader
 		.lines()
 		.filter(str -> {return str.contains("3:16");})
-		.forEach(str -> StringUtils.countMatches(StringUtils.lowerCase(str), "the"));
+//		.forEach(str -> StringUtils.countMatches(StringUtils.lowerCase(str), "the"))
+		.forEach(str -> all_3_16.add(str))
+		;
 		
 		System.out.println(all_3_16);
 		System.out.println(all_3_16.size());

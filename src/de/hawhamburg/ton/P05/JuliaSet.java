@@ -7,14 +7,6 @@ package de.hawhamburg.ton.P05;
 
 import de.hawhamburg.ton.P01.*;
 
-/**
- * 
- * @author Sandra Stankewitz
- * @author Hong Hai Le
- * @class This is a class Julia Set contains z0 and c.
- *
- */
-
 public class JuliaSet  {
 	//c is constant cannot change value after setting value
 	private final Complex c;

@@ -26,8 +26,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MainSet extends Application {
-	private static final int CANVAS_WIDTH 	= 1000;
-	private static final int CANVAS_HEIGHT 	= 1000;
+	private static final int CANVAS_WIDTH 	= 500;
+	private static final int CANVAS_HEIGHT 	= 500;
 	// scale to ensure the result will stay exactly the same as size of canvas
 	private static final double SCALE = CANVAS_WIDTH * 1.0 / CANVAS_HEIGHT;
 
@@ -131,11 +131,11 @@ public class MainSet extends Application {
 		zoomLabel.setText("zoom " + (zoom * 100) + "%");
 
 		// Button to process draw after input new Value from z0 and c
-		Button process = new Button("Process");
-		process.setOnAction(new processInput());
+		Button draw = new Button("Draw!");
+		draw.setOnAction(new processInput());
 
 		// Button to process draw Julia with default value
-		Button processDefault = new Button("Default");
+		Button processDefault = new Button("Reset");
 		processDefault.setOnAction(new processInput());
 		
 		// Buttons to zoom in and out
@@ -172,7 +172,7 @@ public class MainSet extends Application {
 		topGridPane.add(zoomIn, 2, 6);
 		topGridPane.add(zoomOut, 0, 6);
 		
-		topGridPane.add(process, 0, 7);
+		topGridPane.add(draw, 0, 7);
 		topGridPane.add(processDefault, 1, 7);
 
 		topGridPane.add(xy, 0, 10);
@@ -270,7 +270,7 @@ public class MainSet extends Application {
 			// only draw if Button Default was clicked
 			// current julia are different from default Julia
 			// or zoom or xMove or zMove are not default
-			if (clickBttn.getText().equals("Default")) {
+			if (clickBttn.getText().equals("Reset")) {
 				if (!julia.equals(defaultJulia) || zoom != 1 || xMove != 0 || yMove != 0) {
 					// set back xMove, yMove and zoom to default Value;
 					xMove = 0;
@@ -290,7 +290,7 @@ public class MainSet extends Application {
 			// only draw if Button Process was clicked and
 			// current julia are different from inputed Julia
 			// or zoom or xMove or zMove are not default
-			if (clickBttn.getText().equals("Process")) {
+			if (clickBttn.getText().equals("Draw!")) {
 				if (!julia.equals(newJulia) || zoom != 1 || xMove != 0 || yMove != 0) {
 					// set back xMove, yMove and zoom to default Value;
 					xMove = 0;
