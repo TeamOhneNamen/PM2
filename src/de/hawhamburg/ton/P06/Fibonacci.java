@@ -10,7 +10,11 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.OptionalDouble;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 
 
@@ -22,65 +26,54 @@ public class Fibonacci {
 
 	public static void main(String[] args) {
 		int startyear = 1900;
+		int progressionLimit = 25;
 		
-		ArrayList<Integer> fibonacciFolge = new ArrayList<Integer>();
-		Stream.generate(Fibonacci::fibonacci).
-		limit(25).
-		forEach(n -> fibonacciFolge.add(n));
+		ArrayList<Integer> fibonacciFolge = 
+		Stream.iterate(1, i->i+1).limit(progressionLimit).map(f -> fibonacci(f)).collect(Collectors.toCollection(ArrayList::new));
+//		System.out.println(fibonacciFolge);
 		
-		System.out.println(fibonacciFolge);
+		ArrayList<Integer> collatzFolge =
+		Stream.iterate(1, i->i+1).limit(progressionLimit).map(f -> collatz(f)).collect(Collectors.toCollection(ArrayList::new));		
+//		System.out.println(collatzFolge);
 		
-		ArrayList<Integer> collatzFolge = new ArrayList<Integer>();
-		Stream.generate(Fibonacci::collatz).
-		limit(25).
-		forEach(c -> collatzFolge.add(c));
-		
-		System.out.println(collatzFolge);
-		
-		ArrayList<LocalDate> fridaythirteen = new ArrayList<LocalDate>();
-		Stream.iterate(LocalDate.of(startyear , 01, 13), date -> date.plusMonths(1)).
+		ArrayList<LocalDate> fridaythirteen =
+		Stream.iterate(LocalDate.of(1900 , 01, 13), date -> date.plusMonths(1)).
 		limit(12* (2020-1970)).
 		filter(date -> {return date.getDayOfWeek().equals(DayOfWeek.FRIDAY);}).
-		forEach(d -> fridaythirteen.add(d));
+		collect(Collectors.toCollection(ArrayList::new));
 		
-		System.out.println(fridaythirteen);
+//		System.out.println(fridaythirteen);
 		
-		ArrayList<Integer> weekend = new ArrayList<Integer>();
+		ArrayList<LocalDate> weekend =
 		Stream.iterate(LocalDate.of(startyear , 12, 24), date -> date.plusYears(1)).
 		limit((2020-startyear)).
 		filter(date -> date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY).
-		forEach(d -> weekend.add(d.getYear()));
+		collect(Collectors.toCollection(ArrayList::new)); 
 		
 		System.out.println(weekend);
-		System.out.println(difference(weekend));
-		System.out.println(min(weekend));
-		System.out.println(max(weekend));
-		System.out.println(average(weekend));
+//		System.out.println(difference(weekend));
+//		System.out.println(min(weekend));
+//		System.out.println(max(weekend));
+//		System.out.println(averageLD(weekend));
 		
-		System.out.println(differenceLD(fridaythirteen));
-		System.out.println(minLD(fridaythirteen));
-		System.out.println(maxLD(fridaythirteen));
-		System.out.println(averageLD(fridaythirteen));
+//		System.out.println(differenceLD(fridaythirteen));
+//		System.out.println(minLD(fridaythirteen));
+//		System.out.println(maxLD(fridaythirteen));
+//		System.out.println(averageLD(fridaythirteen));
 
 	}
 
-	static int n = 0;
-
-	private static int fibonacci() {
+	private static int fibonacci(int n) {
 		int x = 0, y = 1, z = 1;
 		for (int i = 0; i < n; i++) {
 			x = y;
 			y = z;
 			z = x + y;
 		}
-
-		n++;
 		return x;
 	}
-
-	static int c = 1;
-
-	private static int collatz() {
+	
+	private static int collatz(int c) {
 		if(c == 0){
 			c = 0;
 		}else if (c % 2 == 0) {
@@ -104,14 +97,14 @@ public class Fibonacci {
 		return difference.get(difference.size()-1);
 	}
 	
-	private static int average(ArrayList<Integer> arrylist){
+	private static double average(ArrayList<Integer> arrylist){
 		ArrayList<Integer> difference = difference(arrylist);
-		return difference.stream().mapToInt(Integer::intValue).sum() / difference.size();
+		return difference.stream().mapToInt(Integer::intValue).average().getAsDouble();
 	}
 	
 	private static ArrayList<Integer> difference(ArrayList<Integer> arry){
 		ArrayList<Integer> difference = new ArrayList<Integer>();
-		
+//		arry.stream().mapToInt(i, e -> triangularNumberIterative(i));
 		for(int i = 1; i < arry.size(); i++){
 			int temp = arry.get(i) - arry.get(i-1);
 			difference.add(temp);
@@ -131,14 +124,22 @@ public class Fibonacci {
 		return difference.get(difference.size()-1);
 	}
 	
-	private static int averageLD(ArrayList<LocalDate> arrylist){
-		ArrayList<Integer> difference = differenceLD(arrylist);
-		return difference.stream().mapToInt(Integer::intValue).sum() / difference.size();
+	private static Period averageLD(ArrayList<LocalDate> arrylist){
+		return Period.between(arrylist.stream().max((e1, e2) -> e1.compareTo(e2)).get(), arrylist.stream().min((e1, e2) -> e1.compareTo(e2)).get());
+//		ArrayList<Integer> difference = differenceLD(arrylist);
+//		return difference.stream().mapToInt(Integer::intValue).average().getAsDouble();
 	}
+	
+//	private static void averageLD(ArrayList<LocalDate> arrylist){
+//		 arrylist.stream().map((e1, e2) -> Period.between(e1, e2) );
+////		ArrayList<Integer> difference = differenceLD(arrylist);
+////		return difference.stream().mapToInt(Integer::intValue).average().getAsDouble();
+//	}
 	
 	private static ArrayList<Integer> differenceLD(ArrayList<LocalDate> arry){
 		ArrayList<Integer> difference = new ArrayList<Integer>();
-		
+		System.out.println(arry.stream().max((e1, e2) -> e1.compareTo(e2)));
+		System.out.println(arry.stream().min((e1, e2) -> e1.compareTo(e2)));
 		for(int i = 1; i < arry.size(); i++){
 			Period temp = Period.between(arry.get(i-1), arry.get(i));
 			difference.add(temp.getMonths());

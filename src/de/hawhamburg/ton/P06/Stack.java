@@ -11,11 +11,14 @@ import java.util.Collections;
 public class Stack {
 	
 	Object[] data;
-	
 	int pointer = 0;
 	
 	public Stack(int size){
 		data = new Object[size];
+	}
+	
+	public Stack(){
+		data = new Object[5];
 	}
 	
 	public static void main(String[] args){
@@ -54,16 +57,28 @@ public class Stack {
 		pointer++;
 		
 	}
-	public void pop(){
+	public Object pop() throws EmptyStackException{
+		if(pointer == 0){
+			throw new EmptyStackException(); 
+		}
+		Object o = data[(pointer-1)];
 		data[(pointer-1)] = null;
+		pointer--;
+		return o;
+		
+	}
+	
+	public Object peek() throws EmptyStackException{
+		if(pointer == 0){
+			throw new EmptyStackException(); 
+		}
+		return data[(pointer)];
 		
 	}
 	
 	public boolean isEmpty(){
 		boolean isEmpty = false;
-		int i = 0;
-		while(i < data.length && !(isEmpty)){
-			i++;
+		for(int i = 0; i < data.length && !(isEmpty); i++){
 			isEmpty = (data[i] == null);
 		}
 		return isEmpty;
@@ -78,7 +93,10 @@ public class Stack {
 	public String toString(){
 		String output = "";
 		for(int i = 0; i < length(); i++){
-			output += data[i] + ", ";
+			if(data[i] != null){
+				output += data[i] + ", ";
+			}
+			
 		}
 		return output;
 	}
