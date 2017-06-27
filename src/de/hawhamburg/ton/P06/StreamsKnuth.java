@@ -8,34 +8,32 @@ package de.hawhamburg.ton.P06;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-import com.sun.xml.internal.ws.util.StringUtils;
-
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamsKnuth {
 
-	public static void main(String[] args) throws FileNotFoundException {
-		BufferedReader bufferedReader = new BufferedReader (new InputStreamReader(new FileInputStream (new File("src/de/hawhamburg/ton/P06/bible.txt"))));
-		
+	public static void main(String[] args) throws IOException {
 		ArrayList<String> all_3_16 = new ArrayList<String>();
-		
-		bufferedReader
-		.lines()
-		.filter(str -> {return str.contains("3:16");})
-//		.forEach(str -> StringUtils.countMatches(StringUtils.lowerCase(str), "the"))
-		.forEach(str -> all_3_16.add(str))
-		;
-		
-		String line = "aaa";
-		
-		int count = line.length() - line.replace("a", "").length();
-		
+		String source = "src/de/hawhamburg/ton/P06/bible.txt";
+
+		try (BufferedReader bufferedReader = new BufferedReader(
+				new InputStreamReader(new FileInputStream(new File(source))));) {
+			all_3_16 = bufferedReader.lines().filter(str -> {
+				return str.contains("3:16");
+			}).collect(Collectors.toCollection(ArrayList::new));
+		}
+
+		String test = all_3_16.get(1);
+		Map<Object, Long> wordQuantity = Arrays.stream(test.split(" "))
+				.collect(Collectors.groupingBy(e -> e, Collectors.counting()));
+
 		System.out.println(all_3_16);
-		System.out.println(all_3_16.size());
-		System.out.println(count);
+		System.out.println(wordQuantity);
 	}
 
 }

@@ -5,13 +5,16 @@
  */
 package diverse;
 
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MathemathischeFolgen {
 
 	public static void main(String[] args) {
-		IntStream fibs = IntStream.iterate(1, i->i+1).limit(20).map(i -> triangularNumberIterative(i));
-		fibs.forEach(e -> {System.out.println(e);});
+		
+		ArrayList<Integer> triangularNumberList = Stream.iterate(1, i->i+1).limit(20).map(i -> triangularNumberIterative(i)).collect(Collectors.toCollection(ArrayList::new));
+		System.out.println(triangularNumberList);
 	}
 	
 	static int triangularNumber(int i){
