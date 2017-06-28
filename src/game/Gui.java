@@ -37,10 +37,10 @@ public class Gui {
 		Var.jf1.add(lbldraw);
 		
 		JMenuBar jmb = new JMenuBar();
-		JMenu jmiDifficulty = new JMenu("Difficulty");
+//		JMenu jmiDifficulty = new JMenu("Difficulty");
 		JMenu jmiMode = new JMenu("Mode");
 		jmb.add(jmiMode);	
-	    JMenu oneplayer = new JMenu("1 versus COM");
+//	    JMenu oneplayer = new JMenu("1 versus COM");
 		
 	    JMenuItem twoplayers = new JMenuItem("1 versus 1");
 	    twoplayers.addActionListener(new ActionListener(){

@@ -2,6 +2,7 @@ package de.hawhamburg.ton.P03;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
 import java.util.ArrayList;
 import org.junit.Test;
 
@@ -23,7 +24,7 @@ public class ReaderTest {
 	String lineEndMinus 			= "Nun also wären Kuben dran -";
 	String lineEndComma 			= "Sehr geehrter Kunsthändler Kahnweiler,";
 	
-	ArrayList<String> readText1 = Reader.readByLines(text1source);
+	List<String> readText1 = Reader.readByLines(text1source);
 
 	@Test
 	public void testGibZeileInt() {

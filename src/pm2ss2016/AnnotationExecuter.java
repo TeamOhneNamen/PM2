@@ -3,16 +3,18 @@ package pm2ss2016;
 
 import java.lang.reflect.Method;
 
-public class MyTest {
+public class AnnotationExecuter {
 
 	public static void main(String[] args) {
 
-		AnnotationRunner runner = new AnnotationRunner();
-
+		AnnotationMarker runner = new AnnotationMarker();
+		//get all methods from the class
 		for (Method method : runner.getClass().getMethods()) {
 			Schedule annos = method.getAnnotation(Schedule.class);
+			//if annotation == Schedule
 			if (annos != null) {
 				try {
+					//executes the method
 					method.invoke(runner);
 				} catch (Exception e) {
 					e.printStackTrace();

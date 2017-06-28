@@ -1,6 +1,6 @@
 package pm2ss2016;
 
-public class AnnotationRunner {
+public class AnnotationMarker {
 
     public void method1() {
         System.out.println("method1");
@@ -16,9 +16,5 @@ public class AnnotationRunner {
         System.out.println("method3");
     }
 
-    @CanRun
-    public void method5() {
-        System.out.println("method4");
-    }
 
 }

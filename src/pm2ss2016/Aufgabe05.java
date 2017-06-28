@@ -5,13 +5,9 @@
  */
 package pm2ss2016;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -100,7 +96,7 @@ public class Aufgabe05 {
 		copy.sort((e1, e2) -> getLastWord(e1).compareTo(getLastWord(e2)));
 	} 
 	
-	
+	@Override
 	public String toString() {
 		return textLinesAsStrings.toString();
 	} 

@@ -13,7 +13,9 @@ import java.awt.RenderingHints;
 import javax.swing.JLabel;
 
 public class Draw extends JLabel{
-	
+
+	private static final long serialVersionUID = 1L;
+
 	protected void paintComponent (Graphics g){
 		super.paintComponent(g);
 		
