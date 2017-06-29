@@ -3,7 +3,7 @@
  * @author Ferdinand Trendelenburg.
  * @author Thorben Schomacker.
  */
-package diverse;
+package pm2tutorium;
 
 public interface Map<K, V> {
 	/**

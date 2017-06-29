@@ -3,7 +3,7 @@
  * @author Ferdinand Trendelenburg.
  * @author Thorben Schomacker.
  */
-package diverse;
+package pm2tutorium;
 
 import java.util.ArrayList;
 import java.util.Iterator;

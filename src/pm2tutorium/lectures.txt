@@ -1,0 +1,4 @@
+BAI2:Programmiermethodik II:Kahlbrandt
+BAI2:Rechnerstrukturen und maschinennahe Programmierung:Schwarz
+BAI3:Graphentheoretische Konzepte und Algorithmen:Klauck
+BAI5:Verteilte Systeme:Klauck
